@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Accounts">
+   <children>
+      <Label layoutY="30.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #15AF3C;" text="Accounts (Student Fees)" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </Label>
+      <Label layoutX="43.0" layoutY="111.0" text="Department :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="dept_box" layoutX="127.0" layoutY="107.0" prefWidth="150.0" promptText="(SELECT DEPARTMENT)" />
+      <Label layoutX="43.0" layoutY="152.0" text="ID :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id_box" layoutX="70.0" layoutY="148.0" prefHeight="26.0" prefWidth="210.0" />
+      <Label layoutX="43.0" layoutY="200.0" text="Trimester :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="trimester_box" layoutX="112.0" layoutY="196.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" />
+      <Button fx:id="search_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="248.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #15AF3C;" text="SEARCH" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Line fx:id="mid_line" endX="-100.00003051757812" endY="166.0" fill="#3147ef" layoutX="473.0" layoutY="110.0" opacity="0.0" startX="-100.0" stroke="#3248ed" strokeLineCap="ROUND" strokeWidth="5.0" />
+      <Label fx:id="pay_info_label" alignment="CENTER" layoutX="410.0" layoutY="111.0" opacity="0.0" prefHeight="26.0" prefWidth="371.0" style="-fx-background-color: #3147ef;" text="Student Payment Info" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_name" layoutX="410.0" layoutY="165.0" prefHeight="18.0" prefWidth="274.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_id" layoutX="410.0" layoutY="193.0" prefHeight="18.0" prefWidth="228.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_dues" layoutX="410.0" layoutY="222.0" prefHeight="18.0" prefWidth="228.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_pay_now" layoutX="410.0" layoutY="252.0" prefHeight="18.0" prefWidth="228.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="pay_fee_label" alignment="CENTER" layoutX="42.0" layoutY="346.0" prefHeight="26.0" prefWidth="744.0" style="-fx-background-color: #15AF3C;" text="Enter Fees" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="418.0" text="Trimester :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="fee_trimester_box" layoutX="112.0" layoutY="413.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" />
+      <Label layoutX="354.0" layoutY="418.0" text="Term :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="fee_term_box" layoutX="402.0" layoutY="415.0" prefHeight="26.0" prefWidth="130.0" promptText="(SELECT TERM)" />
+      <Label layoutX="43.0" layoutY="463.0" text="Enter Fee :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fee_box" layoutX="112.0" layoutY="459.0" prefHeight="26.0" prefWidth="167.0" />
+      <Button fx:id="fee_submit_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="526.0" mnemonicParsing="false" onAction="#save_fee" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #15AF3C;" text="SUBMIT" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="new_data_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="526.0" mnemonicParsing="false" onAction="#enter_new_data" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #3147ef;" text="Enter New Data" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

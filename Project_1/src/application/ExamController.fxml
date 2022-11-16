@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="820.0" scaleShape="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ExamControl">
+   <children>
+      <Label layoutY="30.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #8024A9;" text="Exam Control (Enter Student Results)" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </Label>
+      <Label layoutX="39.0" layoutY="112.0" text="ID :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id_box" layoutX="65.0" layoutY="108.0" prefHeight="26.0" prefWidth="210.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="39.0" layoutY="150.0" text="Department :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="dept_box" layoutX="123.0" layoutY="146.0" prefWidth="150.0" style="-fx-background-color: #BFE9FF;" />
+      <Label layoutX="39.0" layoutY="190.0" text="Trimester :">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="trimester_box" layoutX="111.0" layoutY="186.0" prefHeight="26.0" prefWidth="162.0" style="-fx-background-color: #BFE9FF;" />
+      <Button fx:id="seatch_btn" alignment="CENTER" layoutX="39.0" layoutY="231.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #15AF3C;" text="SEARCH" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Line fx:id="mid_line" endX="-100.00003051757812" endY="152.20001220703125" layoutX="432.0" layoutY="119.0" opacity="0.0" startX="-100.00003051757812" startY="-20.600006103515625" stroke="#2238e4" strokeLineCap="ROUND" strokeWidth="5.0" />
+      <Label fx:id="std_info_label" alignment="CENTER" layoutX="371.0" layoutY="99.0" opacity="0.0" prefHeight="26.0" prefWidth="410.0" style="-fx-background-color: #2238e4;" text="Student Details" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_name" layoutX="371.0" layoutY="150.0" prefHeight="18.0" prefWidth="266.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_id" layoutX="371.0" layoutY="181.0" prefHeight="18.0" prefWidth="266.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name1" layoutX="24.0" layoutY="337.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name2" layoutX="24.0" layoutY="374.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name3" layoutX="24.0" layoutY="410.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name4" layoutX="24.0" layoutY="445.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name5" layoutX="24.0" layoutY="481.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sub_name6" layoutX="25.0" layoutY="517.0" prefHeight="18.0" prefWidth="291.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="sub1_box" layoutX="323.0" layoutY="334.0" prefHeight="26.0" prefWidth="63.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="sub2_box" layoutX="323.0" layoutY="370.0" prefHeight="26.0" prefWidth="63.0" />
+      <TextField fx:id="sub3_box" layoutX="323.0" layoutY="406.0" prefHeight="26.0" prefWidth="63.0" />
+      <TextField fx:id="sub4_box" layoutX="323.0" layoutY="441.0" prefHeight="26.0" prefWidth="63.0" />
+      <TextField fx:id="sub5_box" layoutX="324.0" layoutY="477.0" prefHeight="26.0" prefWidth="63.0" />
+      <TextField fx:id="sub6_box" layoutX="323.0" layoutY="513.0" prefHeight="26.0" prefWidth="63.0" />
+      <Button fx:id="preview_btn" alignment="CENTER" layoutX="24.0" layoutY="552.0" mnemonicParsing="false" onAction="#marks_preview" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #15AF3C;" text="PREVIEW" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="submit_btn" alignment="CENTER" layoutX="142.0" layoutY="552.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #2238e4;" text="SUBMIT" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Line fx:id="mid_line2" endX="-100.00003051757812" endY="152.20001220703125" layoutX="514.0" layoutY="379.0" opacity="0.0" startX="-100.00003051757812" startY="-20.600006103515625" stroke="#2238e4" strokeLineCap="ROUND" strokeWidth="5.0" />
+      <Label fx:id="preview_marks_label" alignment="CENTER" layoutX="437.0" layoutY="334.0" opacity="0.0" prefHeight="26.0" prefWidth="357.0" style="-fx-background-color: #2238e4;" text="Preview Marks" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub1" layoutX="437.0" layoutY="374.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub2" layoutX="437.0" layoutY="401.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub3" layoutX="437.0" layoutY="432.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub4" layoutX="437.0" layoutY="458.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub5" layoutX="437.0" layoutY="481.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_sub6" layoutX="437.0" layoutY="508.0" prefHeight="18.0" prefWidth="358.0">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="new_data_btn" alignment="CENTER" layoutX="261.0" layoutY="552.0" mnemonicParsing="false" onAction="#new_data" prefHeight="26.0" prefWidth="124.0" style="-fx-background-color: #33B8FF;" text="RESET" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Line fx:id="mid_line21" endX="-100.00003051757812" endY="152.20001220703125" layoutX="524.0" layoutY="389.0" opacity="0.0" startX="-100.00003051757812" startY="-20.600006103515625" stroke="#2238e4" strokeLineCap="ROUND" strokeWidth="5.0" />
+      <Label alignment="CENTER" layoutX="35.0" layoutY="274.0" prefHeight="26.0" prefWidth="734.0" style="-fx-background-color: #088e3e;" text="Enter Marks" textFill="WHITE">
+         <font>
+            <Font name="Open Sans SemiBold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
