@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="theFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AllController">
+   <children>
+      <AnchorPane fx:id="signUp_page" prefHeight="600.0" prefWidth="850.0">
+         <children>
+            <AnchorPane layoutX="390.0" layoutY="3.0" prefHeight="594.0" prefWidth="459.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../undraw_User_flow_re_bvfx.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="123.0" layoutY="177.0" prefHeight="18.0" prefWidth="210.0" style="-fx-background-color: #73126f;" text="Note : Enter your ID a &quot;Username&quot;" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans SemiBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="123.0" layoutY="199.0" prefHeight="18.0" prefWidth="210.0" style="-fx-background-color: #73126f;" text="EG: 27001" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans SemiBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="username_box" alignment="CENTER" layoutX="123.0" layoutY="272.0" prefHeight="30.0" prefWidth="210.0" promptText="Username">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="dept_box" layoutX="123.0" layoutY="313.0" prefHeight="30.0" prefWidth="210.0" promptText="(Select Department)" />
+                  <PasswordField fx:id="password_box" alignment="CENTER" layoutX="123.0" layoutY="354.0" prefHeight="30.0" prefWidth="210.0" promptText="Password">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="sign_up_btn" layoutX="193.0" layoutY="401.0" mnemonicParsing="false" onAction="#sign_in" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #730e61;" text="Sign Up" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="121.0" layoutY="539.0" prefHeight="18.0" prefWidth="167.0" text="Already have an account ?">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink fx:id="goTo_login" alignment="CENTER" layoutX="289.0" layoutY="536.0" onAction="#change_page" style="-fx-background-color: transparent;" text="Log in" textFill="#236dec" underline="true">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="600.0" prefWidth="394.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="586.0" fitWidth="383.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../jaredd-craig-wbIMW_gM2mI-unsplash.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="login_page" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #fff;" visible="false">
+         <children>
+            <AnchorPane layoutX="496.0" layoutY="9.0" prefHeight="580.0" prefWidth="340.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="574.0" fitWidth="363.0" layoutX="-24.0" layoutY="4.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../jodyhongfilms-sI1mbxJFFpU-unsplash.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="600.0" prefWidth="437.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="143.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../clipart37704.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="123.0" layoutY="207.0" prefHeight="18.0" prefWidth="210.0" style="-fx-background-color: #73126f;" text="Note : Enter your ID a &quot;Username&quot;" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans SemiBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="123.0" layoutY="229.0" prefHeight="18.0" prefWidth="210.0" style="-fx-background-color: #73126f;" text="EG: 27001" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans SemiBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="login_username" alignment="CENTER" layoutX="123.0" layoutY="292.0" prefHeight="30.0" prefWidth="210.0" promptText="Username">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="login_dept_box" layoutX="123.0" layoutY="333.0" prefHeight="30.0" prefWidth="210.0" promptText="(Select Department)" />
+                  <PasswordField fx:id="login_password" alignment="CENTER" layoutX="123.0" layoutY="374.0" prefHeight="30.0" prefWidth="210.0" promptText="Password">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="logIn_btn" layoutX="193.0" layoutY="421.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #730e61;" text="Log In" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="121.0" layoutY="549.0" prefHeight="18.0" prefWidth="167.0" text="Don't have an account ?">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink fx:id="goTo_signIn" alignment="CENTER" layoutX="278.0" layoutY="546.0" onAction="#change_page" style="-fx-background-color: transparent;" text="Sign in" textFill="#236dec" underline="true">
+                     <font>
+                        <Font name="Open Sans ExtraBold" size="12.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="student_page" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #fff;" visible="false">
+         <children>
+            <Label layoutY="20.0" prefHeight="30.0" prefWidth="860.0" style="-fx-background-color: #761673;" textFill="WHITE" />
+            <Label layoutX="25.0" layoutY="25.0" text="Name :" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans ExtraBold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="show_name" layoutX="83.0" layoutY="28.0" prefHeight="20.0" prefWidth="264.0" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans SemiBold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="414.0" layoutY="25.0" text="ID :" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans ExtraBold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="show_id" layoutX="438.0" layoutY="26.0" prefHeight="20.0" prefWidth="235.0" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans SemiBold" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="74.0" prefHeight="20.0" prefWidth="235.0" style="-fx-background-color: #05864a;" text="Resgistration for next trimester" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans ExtraBold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="119.0" prefHeight="20.0" prefWidth="66.0" text="Trimester :">
+               <font>
+                  <Font name="Open Sans SemiBold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="trimester_box" layoutX="83.0" layoutY="116.0" prefHeight="26.0" prefWidth="167.0" promptText="(Select Trimester)" />
+            <Button fx:id="course_btn" layoutX="256.0" layoutY="116.0" mnemonicParsing="false" onAction="#course_preview" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: #0b813e;" text="Preview new courses" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="submit_btn" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #2b1be1;" text="Submit" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" layoutX="507.0" layoutY="74.0" prefHeight="20.0" prefWidth="325.0" style="-fx-background-color: #05864a;" text="Courses of next trimester" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans ExtraBold" size="12.0" />
+               </font>
+            </Label>
+            <ListView fx:id="trimester_sub_name" layoutX="507.0" layoutY="109.0" prefHeight="175.0" prefWidth="325.0" />
+            <Label alignment="CENTER" layoutX="14.0" layoutY="233.0" prefHeight="20.0" prefWidth="169.0" style="-fx-background-color: #05864a;" text="See past Trimester Result" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans ExtraBold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="274.0" prefHeight="20.0" prefWidth="66.0" text="Trimester :">
+               <font>
+                  <Font name="Open Sans SemiBold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="result_trimester_box" layoutX="81.0" layoutY="271.0" prefHeight="26.0" prefWidth="167.0" promptText="(Select Trimester)" />
+            <TableView fx:id="result_table" layoutX="19.0" layoutY="386.0" prefHeight="200.0" prefWidth="814.0">
+              <columns>
+                <TableColumn fx:id="subName_table" prefWidth="270.39996910095215" text="Subject Name" />
+                <TableColumn fx:id="marks_table" prefWidth="179.20001220703125" text="Marks" />
+                  <TableColumn fx:id="grade_table" prefWidth="151.19998168945312" text="Grade" />
+                  <TableColumn fx:id="letter_grade_table" prefWidth="214.39996337890625" text="Letter Grade" />
+              </columns>
+            </TableView>
+            <Button fx:id="result_btn" layoutX="262.0" layoutY="271.0" mnemonicParsing="false" onAction="#see_result" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #098451;" text="See Result" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="result_totalGrade" layoutX="21.0" layoutY="328.0" prefHeight="20.0" prefWidth="188.0">
+               <font>
+                  <Font name="Open Sans SemiBold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="result_letterGrade" layoutX="344.0" layoutY="328.0" prefHeight="20.0" prefWidth="188.0">
+               <font>
+                  <Font name="Open Sans SemiBold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="exit_btn" layoutX="800.0" layoutY="4.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="X" textFill="RED">
+         <font>
+            <Font name="Montserrat Black" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.45896652340888977" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="minimize_btn" layoutX="757.0" layoutY="4.0" mnemonicParsing="false" onAction="#minimize" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="---" textFill="RED">
+         <font>
+            <Font name="Montserrat Black" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.45896652340888977" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

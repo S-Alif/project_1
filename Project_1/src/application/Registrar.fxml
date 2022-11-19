@@ -37,12 +37,11 @@
          </font>
       </Label>
       <DatePicker fx:id="dob_box" layoutX="163.0" layoutY="183.0" prefHeight="26.0" prefWidth="154.0" />
-      <Label layoutX="350.0" layoutY="181.0" prefHeight="30.0" prefWidth="48.0" text="Batch :">
+      <Label layoutX="345.0" layoutY="181.0" prefHeight="30.0" prefWidth="48.0" text="Batch :">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="batch_box" layoutX="400.0" layoutY="183.0" prefHeight="26.0" prefWidth="76.0" />
       <Label layoutX="508.0" layoutY="181.0" prefHeight="30.0" prefWidth="82.0" text="Department :">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />
@@ -123,5 +122,6 @@
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="78.0" layoutY="96.0" prefHeight="18.0" prefWidth="137.0" style="-fx-background-color: #ff2b2b;" text="All details must be given" textFill="WHITE" />
+      <ComboBox fx:id="batch_box" layoutX="395.0" layoutY="183.0" prefHeight="26.0" prefWidth="95.0" promptText="(BATCH)" style="-fx-background-color: #D7E1F3;" />
    </children>
 </AnchorPane>

@@ -124,11 +124,36 @@ public class Accounts {
 			Class.forName("com.mysql.cj.jdbc.Driver");			
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
 			
-			if(term == "MID-TERM") {
+			if(pay_mid == 15000 && term == "MID-TERM") {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setHeaderText("Payment for this term was completed");
+				alert.setContentText("Please Select Final term");
+				alert.showAndWait();
+			}
+			if(pay_final == 15000 && term == "FINAL-TERM") {
+				
+				if(due == 0) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Payment Information");
+					alert.setHeaderText(null);
+					alert.setContentText("Payment for this trimester completed");
+					alert.showAndWait();
+				}
+				else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Payment Information");
+					alert.setHeaderText("Payment for this term was completed");
+					alert.setContentText("Please Select Final term");
+					alert.showAndWait();
+				}
+			}
+			
+			if((pay_mid < 15000 || pay_mid == 0) && term == "MID-TERM") {
 				
 				pay_mid = pay_mid + Integer.parseInt(fee_box.getText());				
 				pay_total = pay_mid + pay_final;
-				due = due-pay_mid;
+				due = due-Integer.parseInt(fee_box.getText());
 				
 				String passFee = "UPDATE `payment_"+dept+""+batch+"` SET `midTerm` = ?, `paidFee` = ?, `dueFee` = ? WHERE `id` = ? AND `trimester` = ?";
 				PreparedStatement ps = con.prepareStatement(passFee);
@@ -137,21 +162,34 @@ public class Accounts {
 				ps.setInt(2, pay_total);
 				ps.setInt(3, due);
 				ps.setInt(4, id);
-				ps.setString(5, trimester);
 				
-				ps.executeUpdate();
+				if(fee_trimester_box.getValue() != trimester_box.getValue()) {
+					
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("ERROR");
+					alert.setHeaderText(null);
+					alert.setContentText("Please Select the current trimester");
+					alert.showAndWait();
+				}
+				else {
+					ps.setString(5, trimester);					
+					ps.executeUpdate();
+					
+					/* alert */
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("SUCCESS");
+					alert.setHeaderText("FEES PAID");
+					alert.setContentText("Student has paid the required fees");
+					alert.showAndWait();
+				}
+								
+			}
+			
+			if((pay_final < 15000 || pay_final == 0) && term == "FINAL-TERM") {
 				
-				/* alert */
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("SUCCESS");
-				alert.setHeaderText("FEES PAID");
-				alert.setContentText("Student has paid the required fees");
-				alert.showAndWait();
-				
-			}else {
 				pay_final = pay_final + Integer.parseInt(fee_box.getText());
 				pay_total = pay_mid + pay_final;
-				due = due-pay_final;
+				due = due-Integer.parseInt(fee_box.getText());
 				
 				String passFee = "UPDATE `payment_"+dept+""+batch+"` SET `finalTerm` = ?, `paidFee` = ?, `dueFee` = ? WHERE `id` = ? AND `trimester` = ?";
 				PreparedStatement ps = con.prepareStatement(passFee);
@@ -160,16 +198,26 @@ public class Accounts {
 				ps.setInt(2, pay_total);
 				ps.setInt(3, due);
 				ps.setInt(4, id);
-				ps.setString(5, trimester);
 				
-				ps.executeUpdate();
-				
-				/* alert */
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("SUCCESS");
-				alert.setHeaderText("FEES PAID");
-				alert.setContentText("Student has paid the required fees");
-				alert.showAndWait();
+				if(fee_trimester_box.getValue() != trimester_box.getValue()) {
+					
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("ERROR");
+					alert.setHeaderText(null);
+					alert.setContentText("Please Select the current trimester");
+					alert.showAndWait();
+				}
+				else {
+					ps.setString(5, trimester);					
+					ps.executeUpdate();
+					
+					/* alert */
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("SUCCESS");
+					alert.setHeaderText("FEES PAID");
+					alert.setContentText("Student has paid the required fees");
+					alert.showAndWait();
+				}
 			}
 			
 			

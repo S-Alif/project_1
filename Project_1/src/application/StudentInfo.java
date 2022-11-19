@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,7 +49,7 @@ public class StudentInfo implements Initializable {
 	
 	
 	/* variable for this program */
-	int id, batch, i;
+	int id, batch, i,newID;
 	int[] subject = new int[20];
 	double[] grade = new double[20];
 	double totaleGrade;
@@ -106,7 +108,7 @@ public class StudentInfo implements Initializable {
 				f_name = rs.getString("firstName");
 				l_name = rs.getString("lastName");
 				dob = rs.getString("DOB");
-				id = rs.getInt("id");
+				newID = rs.getInt("id");
 				dept = rs.getString("department");
 				mail = rs.getString("contact");
 				shift = rs.getString("shift");
@@ -116,7 +118,7 @@ public class StudentInfo implements Initializable {
 			show_f_name.setText(f_name);
 			show_l_name.setText(l_name);
 			show_dob.setText(dob);
-			show_id.setText(""+id);
+			show_id.setText(""+newID);
 			show_dept.setText(dept);
 			show_shift.setText(shift);
 			show_mail.setText(mail);
@@ -133,7 +135,7 @@ public class StudentInfo implements Initializable {
 	@FXML
 	public void result(ActionEvent event) {
 		
-		trimester = trimester_box.getValue().toLowerCase();
+		trimester = trimester_box.getValue();
 		
 		/* getting marks from database */
 		try {
@@ -141,22 +143,33 @@ public class StudentInfo implements Initializable {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
 			
 			for(i = 0; i < 6; i++) {
-				String query = "SELECT `sub"+(i+1)+"` FROM `"+dept+""+batch+"_result` WHERE `id` = ? AND `department` = ?";
+				String query = "SELECT `trimester`, `sub"+(i+1)+"` FROM `"+dept+""+batch+"_result` WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
 				PreparedStatement ps = con.prepareStatement(query);
 				
-				ps.setInt(1, id);
+				ps.setInt(1, newID);
 				ps.setString(2, dept);
+				ps.setString(3, trimester);
 				
 				ResultSet rs = ps.executeQuery();
 				
 				if(rs.next() == false) {
-					Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("ERROR");
-					alert.setHeaderText("INVALID DATA");
-					alert.setContentText("Please Enter Required Data Perfectly");
-					alert.showAndWait();
-					break;
-				}else {
+					if(newID == 0) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("ERROR");
+						alert.setHeaderText("Student Data Has Been Deleted");
+						alert.setContentText(null);
+						alert.showAndWait();
+						break;
+					}else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("ERROR");
+						alert.setHeaderText("INVALID DATA");
+						alert.setContentText("Student marks has not been entered for this trimester");
+						alert.showAndWait();
+						break;
+					}
+				}				
+				else {
 					subject[i] = rs.getInt("sub"+(i+1));
 				}
 			}
@@ -275,4 +288,101 @@ public class StudentInfo implements Initializable {
 		);
 		show_result_table.setItems(list);
 	}
+	
+	/* update info */
+	public void update(ActionEvent event) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");			
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
+			
+			String query = "UPDATE `batch_"+dept+""+batch+"` SET `firstName`= ?,`lastName`= ?,`DOB`= ?,`shift`= ?,`contact`= ? WHERE `id` = ? AND `department` = ?;";
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setString(1, show_f_name.getText());
+			ps.setString(2, show_l_name.getText());
+			ps.setString(3, show_dob.getText());
+			ps.setString(4, show_shift.getText());
+			ps.setString(5, show_mail.getText());
+			ps.setInt(6, newID);
+			ps.setString(7, dept);
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirm Update");
+			alert.setHeaderText(null);
+			alert.setContentText("Update Student Information ?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			
+			if (result.get() == ButtonType.OK){
+			    
+				ps.executeUpdate();
+				
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("Update Complete");
+				alert2.setHeaderText(null);
+				alert2.setContentText("Student information has been updated");
+
+				alert2.showAndWait();
+				
+			} else {
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("Update Cancelled");
+				alert2.setHeaderText(null);
+				alert2.setContentText("Student information update has been cancelled");
+
+				alert2.showAndWait();
+			}
+			
+		}catch(Exception e) {
+			
+		}
+		
+	}
+	
+	/* delete student information */
+	public void delete(ActionEvent event) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");			
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
+			
+			String query = "DELETE FROM `batch_"+dept+""+batch+"` WHERE `id` = ? AND `department`=?;";
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setInt(1, newID);
+			ps.setString(2, dept);
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirm Deletion");
+			alert.setHeaderText(null);
+			alert.setContentText("Delete Student Information ?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			
+			if (result.get() == ButtonType.OK){
+			    
+				ps.executeUpdate();
+				
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("Update Complete");
+				alert2.setHeaderText(null);
+				alert2.setContentText("Student information has been deleted");
+
+				alert2.showAndWait();
+				
+			} else {
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("Update Cancelled");
+				alert2.setHeaderText(null);
+				alert2.setContentText("Student information deletion has been cancelled");
+
+				alert2.showAndWait();
+			}
+			
+		}catch(Exception e) {
+			
+		}
+	}
+	
 }

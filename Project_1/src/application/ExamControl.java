@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -77,10 +79,11 @@ public class ExamControl {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("ERROR");
 				alert.setHeaderText("INVALID DATA");
-				alert.setContentText("Please Enter Required Data Perfectly");
+				alert.setContentText("Student Data not found");
 				alert.showAndWait();
 			}else {
 				name = ""+rs.getString("firstName")+" "+rs.getString("lastName");
+				id = rs.getInt("id");
 			}
 			
 			/* showing the search result */
@@ -160,113 +163,134 @@ public class ExamControl {
 	/* submit result */
 	public void submit(ActionEvent event) {
 		
-		/* calculate result and get grade */
-		for(i = 0; i < 6; i++) {
-			
-			if(subject[i] >= 80) {
-				grade[i] = 4.00;
-			}
-			else if(subject[i] >= 75 && subject[i] < 80) {
-				grade[i] = 3.75;
-			}
-			else if(subject[i] >= 70 && subject[i] < 75) {
-				grade[i] = 3.50;
-			}
-			else if(subject[i] >= 65 && subject[i] < 70) {
-				grade[i] = 3.25;
-			}
-			else if(subject[i] >= 60 && subject[i] < 65) {
-				grade[i] = 3.0;
-			}
-			else if(subject[i] >= 55 && subject[i] < 60) {
-				grade[i] = 2.75;
-			}
-			else if(subject[i] >= 50 && subject[i] < 55) {
-				grade[i] = 2.50;
-			}
-			else if(subject[i] >= 45 && subject[i] < 50) {
-				grade[i] = 2.25;
-			}
-			else if(subject[i] >= 40 && subject[i] < 45) {
-				grade[i] = 2.00;
-			}
-			else {
-				grade[i] = 0.00;
-			}
-			
-			totalGrade = totalGrade + grade[i];
-		}
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirm Marks Submition");
+		alert.setHeaderText(null);
+		alert.setContentText("Submit Student Marks for "+trimester+" ?");
+
+		Optional<ButtonType> result = alert.showAndWait();
 		
-		/* calculate cgpa avg */
-		cgpa = totalGrade / 6;
-		
-		/* letter grade */
-		if(cgpa == 4.00) {
-			letter_grade = "A+";
-		}
-		else if(cgpa < 4.00 && cgpa >= 3.75) {
-			letter_grade = "A";
-		}
-		else if(cgpa < 3.75 && cgpa >= 3.50) {
-			letter_grade = "A-";
-		}
-		else if(cgpa < 3.50 && cgpa >= 3.25) {
-			letter_grade = "B+";
-		}
-		else if(cgpa < 3.25 && cgpa >= 3.00) {
-			letter_grade = "B";
-		}
-		else if(cgpa < 3.00 && cgpa >= 2.75) {
-			letter_grade = "B-";
-		}
-		else if(cgpa < 2.75 && cgpa >= 2.50) {
-			letter_grade = "C+";
-		}
-		else if(cgpa < 2.50 && cgpa >= 2.25) {
-			letter_grade = "C";
+		if (result.get() == ButtonType.CANCEL){
+			
+			Alert alert2 = new Alert(AlertType.INFORMATION);
+			alert2.setTitle("Marks Submition Stopped");
+			alert2.setHeaderText(null);
+			alert2.setContentText("Student marks submition for "+trimester+" has been cancelled");
+
+			alert2.showAndWait();
+			
 		}
 		else {
-			letter_grade = "D";
-		}
-		
-		/* submit to database */
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");			
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
 			
+			
+			/* calculate result and get grade */
 			for(i = 0; i < 6; i++) {
-				String query = "UPDATE `"+dept+""+batch+"_result` SET sub"+(i+1)+" = ? WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
-				PreparedStatement ps = con.prepareStatement(query);
 				
-				ps.setInt(1, subject[i]);
-				ps.setInt(2, id);
-				ps.setString(3, dept);
-				ps.setString(4, trimester);
+				if(subject[i] >= 80) {
+					grade[i] = 4.00;
+				}
+				else if(subject[i] >= 75 && subject[i] < 80) {
+					grade[i] = 3.75;
+				}
+				else if(subject[i] >= 70 && subject[i] < 75) {
+					grade[i] = 3.50;
+				}
+				else if(subject[i] >= 65 && subject[i] < 70) {
+					grade[i] = 3.25;
+				}
+				else if(subject[i] >= 60 && subject[i] < 65) {
+					grade[i] = 3.0;
+				}
+				else if(subject[i] >= 55 && subject[i] < 60) {
+					grade[i] = 2.75;
+				}
+				else if(subject[i] >= 50 && subject[i] < 55) {
+					grade[i] = 2.50;
+				}
+				else if(subject[i] >= 45 && subject[i] < 50) {
+					grade[i] = 2.25;
+				}
+				else if(subject[i] >= 40 && subject[i] < 45) {
+					grade[i] = 2.00;
+				}
+				else {
+					grade[i] = 0.00;
+				}
 				
-				ps.executeUpdate();
+				totalGrade = totalGrade + grade[i];
 			}
 			
-			String query2 = "UPDATE `"+dept+""+batch+"_result` SET `totalLetterGrade` = ?, `totalGrade` = ? WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
-			PreparedStatement ps2 = con.prepareStatement(query2);
+			/* calculate cgpa avg */
+			cgpa = totalGrade / 6;
 			
-			ps2.setString(1, letter_grade);
-			ps2.setDouble(2, cgpa);
-			ps2.setInt(3, id);
-			ps2.setString(4, dept);
-			ps2.setString(5, trimester);
+			/* letter grade */
+			if(cgpa == 4.00) {
+				letter_grade = "A+";
+			}
+			else if(cgpa < 4.00 && cgpa >= 3.75) {
+				letter_grade = "A";
+			}
+			else if(cgpa < 3.75 && cgpa >= 3.50) {
+				letter_grade = "A-";
+			}
+			else if(cgpa < 3.50 && cgpa >= 3.25) {
+				letter_grade = "B+";
+			}
+			else if(cgpa < 3.25 && cgpa >= 3.00) {
+				letter_grade = "B";
+			}
+			else if(cgpa < 3.00 && cgpa >= 2.75) {
+				letter_grade = "B-";
+			}
+			else if(cgpa < 2.75 && cgpa >= 2.50) {
+				letter_grade = "C+";
+			}
+			else if(cgpa < 2.50 && cgpa >= 2.25) {
+				letter_grade = "C";
+			}
+			else {
+				letter_grade = "D";
+			}
 			
-			ps2.executeUpdate();
+			/* submit to database */
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");			
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
+				
+				for(i = 0; i < 6; i++) {
+					String query = "UPDATE `"+dept+""+batch+"_result` SET sub"+(i+1)+" = ? WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
+					PreparedStatement ps = con.prepareStatement(query);
+					
+					ps.setInt(1, subject[i]);
+					ps.setInt(2, id);
+					ps.setString(3, dept);
+					ps.setString(4, trimester);
+					
+					ps.executeUpdate();
+				}
+				
+				String query2 = "UPDATE `"+dept+""+batch+"_result` SET `totalLetterGrade` = ?, `totalGrade` = ? WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
+				PreparedStatement ps2 = con.prepareStatement(query2);
+				
+				ps2.setString(1, letter_grade);
+				ps2.setDouble(2, cgpa);
+				ps2.setInt(3, id);
+				ps2.setString(4, dept);
+				ps2.setString(5, trimester);
+				
+				ps2.executeUpdate();
+				
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert2.setTitle("SUCCESS");
+				alert2.setHeaderText("ALL DATA SAVED");
+				alert2.setContentText("Student marks has been saved");
+				alert2.showAndWait();
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("SUCCESS");
-			alert.setHeaderText("ALL DATA SAVED");
-			alert.setContentText("Student marks has been saved");
-			alert.showAndWait();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
 	/* enter new data */
