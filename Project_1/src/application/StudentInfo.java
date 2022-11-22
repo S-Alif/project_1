@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,6 +43,8 @@ public class StudentInfo implements Initializable {
 	private TableColumn<DataTable, Double> grades;
 	@FXML
 	private TableColumn<DataTable, String> letter_Grade;
+	@FXML
+	private Label show_totalGrade, show_letterGrade;
 	
 	
 	/* comboBox data */
@@ -173,6 +177,47 @@ public class StudentInfo implements Initializable {
 					subject[i] = rs.getInt("sub"+(i+1));
 				}
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/* grade and letter grade */
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",n);
+			
+			String query = "SELECT `trimester`, `totalLetterGrade`, `totalGrade` FROM `"+dept+""+batch+"_result` WHERE `id` = ? AND `department` = ? AND `trimester` = ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setInt(1, newID);
+			ps.setString(2, dept);
+			ps.setString(3, trimester);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next() == false) {
+				if(newID == 0) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("ERROR");
+					alert.setHeaderText("Student Data Has Been Deleted");
+					alert.setContentText(null);
+					alert.showAndWait();
+				}else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("ERROR");
+					alert.setHeaderText("INVALID DATA");
+					alert.setContentText("Student marks has not been entered for this trimester");
+					alert.showAndWait();
+				}
+			}				
+			else {
+				DecimalFormat format = new DecimalFormat("#.##");
+				
+				show_letterGrade.setText("Letter Grade : "+rs.getString("totalLetterGrade"));
+				show_totalGrade.setText("Total Grade : "+format.format(rs.getDouble("totalGrade")));
+			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

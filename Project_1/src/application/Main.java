@@ -21,7 +21,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.getIcons().add(new Image("/download-2.png"));
+			primaryStage.getIcons().add(new Image("/project-logo.png"));
 //			primaryStage.setTitle("University System App");
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 			

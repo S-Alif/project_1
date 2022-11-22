@@ -2,14 +2,11 @@ package application;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
-import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,95 +26,94 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class AllController implements Initializable{
 
-	 	@FXML
-	    private Button course_btn;
+	@FXML
+    private Button course_btn;
 
-	    @FXML
-	    private ComboBox<String> dept_box;
+    @FXML
+    private ComboBox<String> dept_box;
 
-	    @FXML
-	    private Hyperlink goTo_login;
+    @FXML
+    private Hyperlink goTo_login;
 
-	    @FXML
-	    private Hyperlink goTo_signIn;
+    @FXML
+    private Hyperlink goTo_signIn;
 
-	    @FXML
-	    private TableColumn<DataTable, Double> grade_table;
+    @FXML
+    private TableColumn<DataTable, Double> grade_table;
 
-	    @FXML
-	    private TableColumn<DataTable, String> letter_grade_table;
+    @FXML
+    private TableColumn<DataTable, String> letter_grade_table;
 
-	    @FXML
-	    private Button logIn_btn;
+    @FXML
+    private Button logIn_btn;
 
-	    @FXML
-	    private ComboBox<String> login_dept_box;
+    @FXML
+    private ComboBox<String> login_dept_box;
 
-	    @FXML
-	    private AnchorPane login_page;
+    @FXML
+    private AnchorPane login_page;
 
-	    @FXML
-	    private PasswordField login_password;
+    @FXML
+    private PasswordField login_password;
 
-	    @FXML
-	    private TextField login_username;
+    @FXML
+    private TextField login_username;
 
-	    @FXML
-	    private TableColumn<DataTable, Integer> marks_table;
+    @FXML
+    private TableColumn<DataTable, Integer> marks_table;
 
-	    @FXML
-	    private PasswordField password_box;
+    @FXML
+    private PasswordField password_box;
 
-	    @FXML
-	    private Button result_btn;
+    @FXML
+    private Button result_btn;
 
-	    @FXML
-	    private TableView<DataTable> result_table;
+    @FXML
+    private TableView<DataTable> result_table;
 
-	    @FXML
-	    private ComboBox<String> result_trimester_box;
+    @FXML
+    private ComboBox<String> result_trimester_box;
 
-	    @FXML
-	    private Label show_id, result_totalGrade, result_letterGrade;
+    @FXML
+    private Label show_id, result_totalGrade, result_letterGrade;
 
-	    @FXML
-	    private Label show_name;
+    @FXML
+    private Label show_name;
 
-	    @FXML
-	    private AnchorPane signUp_page, theFrame;
+    @FXML
+    private AnchorPane signUp_page, theFrame;
 
-	    @FXML
-	    private Button sign_up_btn;
+    @FXML
+    private Button sign_up_btn;
 
-	    @FXML
-	    private AnchorPane student_page;
+    @FXML
+    private AnchorPane student_page;
 
-	    @FXML
-	    private TableColumn<DataTable, String> subName_table;
+    @FXML
+    private TableColumn<DataTable, String> subName_table;
 
-	    @FXML
-	    private Button submit_btn;
+    @FXML
+    private Button submit_btn;
 
-	    @FXML
-	    private ComboBox<String> trimester_box;
+    @FXML
+    private ComboBox<String> trimester_box;
 
-	    @FXML
-	    private ListView<String> trimester_sub_name;
+    @FXML
+    private ListView<String> trimester_sub_name;
 
-	    @FXML
-	    private TextField username_box;
-	    
-	    @FXML
-	    private Button exit_btn;
+    @FXML
+    private TextField username_box;
+    
+    @FXML
+    private Button exit_btn;
 	    
     
     /* variables for storing */
     private String dept, password, name, newID, trimester, totalLetterGrade;
-    private int batch, id,i;
+    private int batch, id,i, theID;
     int[] subject = new int[20];
 	double[] grade = new double[20];
 	double totalGrade;
@@ -129,6 +125,7 @@ public class AllController implements Initializable{
     ObservableList<String> trimesters = FXCollections.observableArrayList("SPRING-22", "SUMMER-22", "FALL-22");
     
     ObservableList<DataTable> list;
+    ObservableList<String> list2 = FXCollections.observableArrayList("","","","","","");
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -158,7 +155,7 @@ public class AllController implements Initializable{
 	public void login() {
 		
 		/* getting data to variables */
-		dept = login_dept_box.getValue().toLowerCase();
+		dept = login_dept_box.getValue();
 		id = Integer.parseInt(login_username.getText());
 		batch = Integer.parseInt(login_username.getText().substring(0,2));
 		password = login_password.getText();		
@@ -183,6 +180,7 @@ public class AllController implements Initializable{
 				
 				name = ""+rs.getString("firstName")+" "+rs.getString("lastName");
 				newID = ""+rs.getString("department")+" "+rs.getInt("id");
+				theID = rs.getInt("id");
 				
 			}else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -294,6 +292,8 @@ public class AllController implements Initializable{
 	/* preview courses */
 	public void  course_preview() {
 		
+		trimester_sub_name.getItems().clear();
+		
 		trimester = trimester_box.getValue();
 		batch = Integer.parseInt(newID.substring(4,6));
 		id = Integer.parseInt(newID.substring(4,9));
@@ -328,12 +328,13 @@ public class AllController implements Initializable{
 			e.printStackTrace();
 		}
 		
+		
 		/* showing the list */
 		for(i = 0; i < 6; i++) {
-			trimester_sub_name.getItems().addAll(sub_names[i]);
+			list2.set(i, sub_names[i]);
 		}
+		trimester_sub_name.getItems().addAll(list2);		
 	}
-	
 	
 	
 	/* see result */
@@ -393,7 +394,7 @@ public class AllController implements Initializable{
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("ERROR");
 					alert.setHeaderText("INVALID DATA");
-					alert.setContentText("Please Enter Required Data Perfectly");
+					alert.setContentText("Please Select the required trimester");
 					alert.showAndWait();
 					break;
 				}else {
@@ -517,5 +518,58 @@ public class AllController implements Initializable{
 		
 	}
 	
+	
+	/* submit re-registration */
+	public void re_registration() {
+		
+		try{
+			Connection con = Database.connectDB();
+			
+			/* main re-registration */
+			String query = "INSERT INTO `re_registration"+batch+"`(`id`, `department`, `trimester`) VALUES (?,?,?)";
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setInt(1, theID);
+			ps.setString(2, dept);
+			ps.setString(3, trimester_box.getValue());
+			
+			ps.executeUpdate();
+			
+			
+			/* new payment */
+			String query2= "INSERT INTO `payment_"+dept+""+batch+"`(`id`,`department`, `trimester`) VALUES (?,?,?);";
+			PreparedStatement ps2 = con.prepareStatement(query2);
+			
+			/* 2nd query */
+			ps2.setInt(1, theID);
+			ps2.setString(2, dept);
+			ps2.setString(3, trimester);
+			
+			ps2.executeUpdate();
+			
+			
+			String query3= "INSERT INTO `"+dept+""+batch+"_result`(`id`,`department`, `trimester`) VALUES (?,?,?);";
+			PreparedStatement ps3 = con.prepareStatement(query3);
+			
+			/* 2nd query */
+			ps3.setInt(1, theID);
+			ps3.setString(2, dept);
+			ps3.setString(3, trimester);
+			
+			/* executing the query */
+			ps3.executeUpdate();
+			
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("MESSAGE");
+			alert.setHeaderText("Registration Complete");
+			alert.setContentText("Your registration for next trimester is complete");
+			alert.showAndWait();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

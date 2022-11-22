@@ -6,7 +6,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -25,7 +27,17 @@
             <Font name="Open Sans SemiBold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="dept_box" layoutX="127.0" layoutY="107.0" prefWidth="150.0" promptText="(SELECT DEPARTMENT)" />
+      <ComboBox fx:id="dept_box" layoutX="127.0" layoutY="107.0" prefWidth="150.0" promptText="(SELECT DEPARTMENT)" style="-fx-background-color: #A0E8FF;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.18313069641590118" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
       <Label layoutX="43.0" layoutY="152.0" text="ID :">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />
@@ -37,7 +49,17 @@
             <Font name="Open Sans SemiBold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="trimester_box" layoutX="112.0" layoutY="196.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" />
+      <ComboBox fx:id="trimester_box" layoutX="112.0" layoutY="196.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" style="-fx-background-color: #A0E8FF;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.20136778056621552" />
+               </color>
+            </DropShadow>
+         </effect></ComboBox>
       <Button fx:id="search_btn" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="248.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #15AF3C;" text="SEARCH" textFill="WHITE">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />
@@ -81,13 +103,33 @@
             <Font name="Open Sans SemiBold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="fee_trimester_box" layoutX="112.0" layoutY="413.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" />
+      <ComboBox fx:id="fee_trimester_box" layoutX="112.0" layoutY="413.0" prefHeight="26.0" prefWidth="167.0" promptText="(SELECT TRIMESTER)" style="-fx-background-color: #A0E8FF;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.20972639322280884" />
+               </color>
+            </DropShadow>
+         </effect></ComboBox>
       <Label layoutX="354.0" layoutY="418.0" text="Term :">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="fee_term_box" layoutX="402.0" layoutY="415.0" prefHeight="26.0" prefWidth="130.0" promptText="(SELECT TERM)" />
+      <ComboBox fx:id="fee_term_box" layoutX="402.0" layoutY="415.0" prefHeight="26.0" prefWidth="130.0" promptText="(SELECT TERM)" style="-fx-background-color: #A0E8FF;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.20440728962421417" />
+               </color>
+            </DropShadow>
+         </effect></ComboBox>
       <Label layoutX="43.0" layoutY="463.0" text="Enter Fee :">
          <font>
             <Font name="Open Sans SemiBold" size="12.0" />

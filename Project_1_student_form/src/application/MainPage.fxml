@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="theFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AllController">
    <children>
-      <AnchorPane fx:id="signUp_page" prefHeight="600.0" prefWidth="850.0">
+      <AnchorPane fx:id="signUp_page" prefHeight="600.0" prefWidth="850.0" visible="false">
          <children>
             <AnchorPane layoutX="390.0" layoutY="3.0" prefHeight="594.0" prefWidth="459.0" style="-fx-background-color: #fff;">
                <children>
@@ -77,7 +77,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="login_page" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #fff;" visible="false">
+      <AnchorPane fx:id="login_page" prefHeight="600.0" prefWidth="850.0" style="-fx-background-color: #fff;">
          <children>
             <AnchorPane layoutX="496.0" layoutY="9.0" prefHeight="580.0" prefWidth="340.0" style="-fx-background-color: #fff;">
                <children>
@@ -146,7 +146,7 @@
                   <Font name="Open Sans ExtraBold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="show_name" layoutX="83.0" layoutY="28.0" prefHeight="20.0" prefWidth="264.0" textFill="WHITE">
+            <Label fx:id="show_name" layoutX="83.0" layoutY="25.0" prefHeight="20.0" prefWidth="264.0" textFill="WHITE">
                <font>
                   <Font name="Open Sans SemiBold" size="14.0" />
                </font>
@@ -176,7 +176,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="submit_btn" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #2b1be1;" text="Submit" textFill="WHITE">
+            <Button fx:id="submit_btn" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" onAction="#re_registration" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #3069f7;" text="Register" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -222,7 +222,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="exit_btn" layoutX="800.0" layoutY="4.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="X" textFill="RED">
+      <Button fx:id="exit_btn" layoutX="800.0" layoutY="9.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="X" textFill="RED">
          <font>
             <Font name="Montserrat Black" size="12.0" />
          </font>
@@ -237,7 +237,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="minimize_btn" layoutX="757.0" layoutY="4.0" mnemonicParsing="false" onAction="#minimize" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="---" textFill="RED">
+      <Button fx:id="minimize_btn" layoutX="757.0" layoutY="9.0" mnemonicParsing="false" onAction="#minimize" prefHeight="30.0" prefWidth="35.0" style="-fx-background-color: #fff;" text="---" textFill="RED">
          <font>
             <Font name="Montserrat Black" size="12.0" />
          </font>
@@ -253,4 +253,11 @@
          </effect>
       </Button>
    </children>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color opacity="0.5015197992324829" />
+         </color>
+      </DropShadow>
+   </effect>
 </AnchorPane>
